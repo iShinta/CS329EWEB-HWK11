@@ -10,6 +10,7 @@ function init(){
   starttime = new Date().getTime();
   elapsed = 0;
   document.getElementById("timer").innerHTML = "Time Taken: ";
+  document.getElementById("message").innerHTML = "";
   orderGrid = [0,0,0,0,0,0,0,0,0,0,0,0];
 
   var rndSet = Math.ceil(Math.random() * 3);
@@ -154,7 +155,9 @@ function elapsedtime(){
     if(elapsed == 0){
       elapsed = Math.floor(time / 100) / 10;
     }
-    document.getElementById("timer").innerHTML = "Time Taken: <br />" + elapsed + " seconds";
+    var min = Math.floor(elapsed / 60);
+    var sec = elapsed - min * 60;
+    document.getElementById("timer").innerHTML = "Time Taken: <br />" + min + " minutes<br />" + sec + " seconds";
     document.getElementById("message").innerHTML = "Congratulations! You got it";
   }else{
     document.getElementById("message").innerHTML = "Better luck next time";
