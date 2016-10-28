@@ -1,14 +1,25 @@
-<!DOCTYPE html>
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE html PUBLIC "-//w3c//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<html>
+<html xmlns = "http://www.w3.org/1999/xhtml">
 <head>
   <title>Jig-Saw Puzzle Game</title>
   <meta name="author" content="mtho" />
   <link rel="stylesheet" type="text/css" href="style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="logic.js"></script>
+  <script type = "text/javascript" src="logic.js"></script>
 </head>
 
 <body>
+  <div id="content">
+    <h1>Jig-Saw Puzzle Game</h1>
+    <form>
+      <input name="startgame" type="button" onclick="init();" value="Start the Game" />
+      <br /><br />
+    </form>
+    <div id="puzzle">
+    </div>
+  </div>
 </body>
 </html>

@@ -2,3 +2,14 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+#content{
+  text-align: center;
+}
+
+#puzzle{
+  margin: auto;
+  background-image: url("img/puzzleback.gif");
+  width: 400px;
+  height: 300px;
+}
