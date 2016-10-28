@@ -8,8 +8,19 @@ body {
 }
 
 #puzzle{
-  margin: auto;
+  display: inline-block;
   background-image: url("img/puzzleback.gif");
   width: 400px;
   height: 300px;
+}
+
+#timer{
+  margin-left: 20px;
+  display: inline-block;
+  vertical-align:top;
+  font-size: 2em;
+}
+
+#message{
+  font-size: 3em;
 }

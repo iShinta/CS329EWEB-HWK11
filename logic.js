@@ -2,16 +2,28 @@
  Define variables for the values computed by the grabber event
  handler but needed by mover event handler
 */
-var diffX, diffY, theElement;
+var diffX, diffY, theElement, starttime, elapsed;
+var orderGrid = [0,0,0,0,0,0,0,0,0,0,0,0];
 
 function init(){
   //Set selection
+  starttime = new Date().getTime();
+  elapsed = 0;
+  document.getElementById("timer").innerHTML = "Time Taken: ";
+  orderGrid = [0,0,0,0,0,0,0,0,0,0,0,0];
+
   var rndSet = Math.ceil(Math.random() * 3);
   var imgStr = "";
+  var imggrid = [0,0,0,0,0,0,0,0,0,0,0,0];
 
   //Initializing the pictures
   for(var i = 1; i <= 12; i++){
-    imgStr += "<span style = \"position: absolute; top: 500px; left: " + (100 + 110 * (i-1)) + "px; background-color: lightgrey;\" onmousedown = \"grabber(event);\"><img src=\"img/images" + rndSet + "/img" + rndSet + "-" + i + ".jpg\" /></span>";
+    var rndGrid = -1;
+    do{
+      rndGrid = Math.floor(Math.random() * 12);
+    }while(imggrid[rndGrid] != 0);
+    imggrid[rndGrid] = i;
+    imgStr += "<span id=\"" + (rndGrid+1) + "\" style = \"position: absolute; top: 500px; left: " + (100 + 110 * (i-1)) + "px; background-color: lightgrey;\" onmousedown = \"grabber(event);\"><img src=\"img/images" + rndSet + "/img" + rndSet + "-" + (rndGrid+1) + ".jpg\" /></span>";
   }
 
   document.getElementById("puzzle").innerHTML = imgStr;
@@ -93,15 +105,22 @@ function reposition(){
   var elementY = parseInt(theElement.style.top) + 50;
 
   if(elementX > puzzleX && elementX < puzzleX + 400 && elementY > puzzleY && elementY < puzzleY + 300){
+    //Position Variable
+    var posVar = 0;
+
     //X
     if(elementX < puzzleX + 100){
       theElement.style.left = puzzleX + "px";
+      posVar += 1;
     }else if(elementX < puzzleX + 200){
       theElement.style.left = puzzleX+100 + "px";
+      posVar += 2;
     }else if(elementX < puzzleX + 300){
       theElement.style.left = puzzleX+200 + "px";
+      posVar += 3;
     }else{
       theElement.style.left = puzzleX+300 + "px";
+      posVar += 4;
     }
 
     //Y
@@ -109,11 +128,37 @@ function reposition(){
       theElement.style.top = puzzleY + "px";
     }else if(elementY < puzzleY + 200){
       theElement.style.top = puzzleY+100 + "px";
+      posVar += 4;
     }else{
       theElement.style.top = puzzleY+200 + "px";
+      posVar += 8;
+    }
+
+    //Affectation
+    orderGrid[posVar-1] = theElement.id;
+  }
+}
+
+function elapsedtime(){
+  //Verification if puzzle is correct
+  var GridOK = true;
+
+  for(var i = 1; i <= 12; i++){
+    if(orderGrid[i-1] != i){
+      GridOK = false;
     }
   }
 
+  if(GridOK){
+    var time = new Date().getTime() - starttime;
+    if(elapsed == 0){
+      elapsed = Math.floor(time / 100) / 10;
+    }
+    document.getElementById("timer").innerHTML = "Time Taken: <br />" + elapsed + " seconds";
+    document.getElementById("message").innerHTML = "Congratulations! You got it";
+  }else{
+    document.getElementById("message").innerHTML = "Better luck next time";
+  }
 
 
 }
