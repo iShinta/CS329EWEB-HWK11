@@ -23,7 +23,7 @@ function init(){
       rndGrid = Math.floor(Math.random() * 12);
     }while(imggrid[rndGrid] != 0);
     imggrid[rndGrid] = i;
-    imgStr += "<span id=\"" + (rndGrid+1) + "\" style = \"position: absolute; top: 500px; left: " + (100 + 110 * (i-1)) + "px; background-color: lightgrey;\" onmousedown = \"grabber(event);\"><img src=\"img/images" + rndSet + "/img" + rndSet + "-" + (rndGrid+1) + ".jpg\" /></span>";
+    imgStr += "<span id=\"" + (rndGrid+1) + "\" style = \"position: absolute; top: 550px; left: " + (100 + 110 * (i-1)) + "px; background-color: lightgrey;\" onmousedown = \"grabber(event);\"><img src=\"img/images" + rndSet + "/img" + rndSet + "-" + (rndGrid+1) + ".jpg\" /></span>";
   }
 
   document.getElementById("puzzle").innerHTML = imgStr;
